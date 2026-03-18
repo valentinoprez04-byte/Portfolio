@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio | Diseñador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=La+Belle+Aurore&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. RESET Y BASE: Limpiamos los márgenes que trae el navegador por defecto */
+        html {
+    scroll-behavior: smooth;
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif; /* Cambiamos Segoe UI por Inter */
+        }
+
+        body {
+            background-color: #131313; /* Fondo negro profundo */
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* 2. HEADER: Tu animación de fondo */
+        header {
+            height: 30vh;
+            background-color: #131313;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .inicial {
+            font-family: 'Tangerine';
+            font-size: 5.5rem; /* Un poco más grande para que resalte */
+            font-weight: 800;
+            color: #00ffcc;    /* Tu color de marca */
+            display: inline-block;
+            transform: rotate(-5deg);   /* Para que el resto del nombre se acerque un poco */
+            line-height: 0;      
+            
+            
+            
+            /* Evita que agrande el alto del header */
+        }
+
+        header h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 3.5rem;
+            display: flex;
+            align-items: center; /* Alinea las letras normales con las iniciales */
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* 3. CONTENEDOR DE TARJETAS (FLEXBOX) */
+        .seccion-disciplinas {
+            max-width: 1200px;
+            margin: 50px auto; /* Sube las tarjetas sobre el header un poquito */
+            padding: 0 20px;
+            display: flex;
+            flex-direction: row; /* FUERZA LA FILA */
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; /* Para que en celular se acomoden solas */
+        }
+
+        .tarjeta {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            width: 260px; /* Ancho fijo para que entren 4 en 1200px */
+            text-align: center;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-tarjeta {
+            opacity: 0;
+            transition: all 0.5s ease;
+            margin-top: 15px;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #00ffcc;
+            box-shadow: 0 20px 40px rgba(0,255,204,0.2);
+        }
+
+        .tarjeta:hover .info-tarjeta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tarjeta h3 { margin-bottom: 10px; color: #00ffcc; }
+        .tarjeta p { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+
+        .boton {
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover .boton {
+            background: #00ffcc;
+            color: #000;
+            border-color: #00ffcc;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        p{
+            font-size: 15px;
+        }
+
+        section h2 {
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #ffffff;
+            line-height: 1; 
+        }
+
+        section h2::first-letter {
+            font-family: 'Tangerine'!important;
+            font-size: 5rem; /* Tamaño grande e impactante */
+            color: #00ffcc;
+            padding-right: 5px;
+            vertical-align: middle; 
+        }
+
+        section h2::after {
+            content: "";
+            flex: 1;
+            height: 1.5px;
+            background-color: #333; /* Gris oscuro para sistema */
+            transition: background-color 0.4s ease;
+        }
+
+        section:hover h2::after {
+            background-color: #00ffcc;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1;
+            overflow: visible;
+            font-size: 3.5rem;
+            margin-bottom: 45px;
+            padding-left: 0px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+        }
+
+        h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #727272;
+            padding: 10px;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dos columnas para tus trabajos */
+            gap: 20px;
+        }
+
+        .galeria img {
+            width: 100%;
+            border-radius: 10px;
+            filter: grayscale(50%);
+            transition: 0.5s;
+        }
+
+        .galeria img:hover {
+            filter: grayscale(0%);
+        }
+
+        .intro-texto {
+            max-width: 800px;
+            margin: 40px auto; /* Lo centra y le da espacio arriba/abajo */
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .intro-texto p {
+            font-size: 1.2rem;
+            color: #ccc;
+            font-weight: 300;
+            padding: 5px;
+        }
+
+        footer {
+            background-color: #050505;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 100px;
+        }
+
+        .footer-content p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .links-contacto a {
+            color: #00ffcc; /* El color de tu marca */
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .links-contacto a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.8rem !important;
+            color: #555 !important;
+        }
+
+        .boton-subir {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #00ffcc; /* Tu color de marca */
+            color: #000;
+            text-decoration: none;
+            border-radius: 50%; /* Lo hace circular */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            z-index: 1000; /* Para que siempre esté por encima de las fotos */
+        }
+
+        .boton-subir:hover {
+            transform: scale(1.1); /* Se agranda un poquito al pasar el mouse */
+            background-color: #fff;
+        }
+
+        /* El salto de línea no existe en la compu */
+        .salto-celu {
+            display: none;
+        }
+
+        /* El separador "|" se ve normal en la compu */
+        .separador-pc {
+            display: inline;
+            color: #2c2c2c; /* Un gris sutil para que no brille tanto como tu nombre */
+            margin: 0 10px;
+        }
+
+        .subtitulo {
+            font-weight: 400; /* 300 es el peso "Light". El normal es 400 y el bold es 700 */
+            letter-spacing: 1px; /* Un poco de aire entre letras ayuda a la lectura en pesos finos */
+            opacity: 0.9; /* Le bajamos un pelín la intensidad para que no compita con tu nombre */
+        }
+
+        .proyecto {
+            margin-bottom: 80px; /* Espacio entre proyectos */
+        }
+
+        .galeria-fotos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .galeria-fotos img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; /* Recorta la imagen para que todas midan lo mismo sin deformarse */
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .galeria-fotos img:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8); /* Fondo negro traslúcido */
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .modal-contenido {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 5px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .img-zoom {
+            transform: scale(2);
+            cursor: zoom-out;
+        }
+
+        .flecha {
+            z-index: 2100;
+        }
+
+        .cerrar {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+                /* Pone los dos proyectos uno al lado del otro en PC */
+        .contenedor-proyectos-branding {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap; /* Para que en celular bajen */
+            margin-top: 30px;
+        }
+
+        .proyecto-mosaico {
+            flex: 1; /* Hace que ambos midan lo mismo */
+            min-width: 300px;
+            max-width: 550px;
+        }
+
+        /* El Mosaico interno */
+        .mosaico-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Dividimos el cuadrado en 3 columnas */
+            grid-auto-rows: 120px; /* Altura base de las filas */
+            gap: 10px;
+            background: #0f0f0f; /* Un fondo sutil */
+            padding: 10px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .mosaico-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Efecto simple de hover */
+        .mosaico-grid img:hover {
+            transform: scale(1.3);
+            opacity: 0.9;
+            filter: brightness(1.1);
+            z-index: 10;
+        }
+
+        /* CLASES PARA VARIAR TAMAÑOS */
+        .foto-grande {
+            grid-column: span 2; /* Ocupa 2 columnas */
+            grid-row: span 2;    /* Ocupa 2 filas */
+        }
+
+        .foto-larga {
+            grid-column: span 2; /* Ocupa 2 columnas de ancho */
+        }
+
+        .foto-larga2{
+            grid-row: span 2;
+        }
+
+        .mosaico-grid img:hover {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
+
+        .descripcion-mosaico {
+            background-color: #111; /* Un fondo oscuro para que resalte */
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra el texto verticalmente */
+            border: 1px solid #222;  /* Un borde sutil */
+        }
+
+        .descripcion-mosaico h4 {
+            color: #00ffcc; /* Tu color de marca */
+            margin-bottom: 0px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            padding: 4px;
+        }
+
+        .descripcion-mosaico p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ccc;
+            margin: 0;
+        }
+
+        .flecha {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 40px;
+            transition: 0.3s ease;
+            user-select: none;
+            z-index: 2100;
+        }
+
+        .anterior { left: 20px; }
+        .siguiente { right: 20px; }
+
+        .flecha:hover {
+            color: #00ffcc; /* Tu color de marca */
+        }
+
+
+
+
+
+
+        /* En celulares lo movemos un poco para que no estorbe el pulgar */
+        @media (max-width: 768px) {
+            .boton-subir {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        
+            header h1 {
+                font-size: 2rem; /* Achicamos el título para que no se corte */
+            }
+
+            .seccion-disciplinas {
+                margin-top: 20px; /* Ya no las solapamos sobre el header en el celu */
+                flex-direction: column; /* 👈 ACÁ ESTÁ EL SECRETO: se ponen una abajo de la otra */
+                align-items: center;
+            }
+
+            .tarjeta {
+                width: 90%; /* Que ocupen casi todo el ancho del celular */
+                max-width: 350px;
+            }
+
+            .galeria {
+                grid-template-columns: 1fr; /* Las fotos pasan de estar en 2 columnas a 1 sola */
+            }
+
+            .intro-texto p {
+                font-size: 1rem;
+            }
+        
+            .separador-pc {
+                display: none;
+            }
+
+            /* Activamos el salto de línea */
+            .salto-celu {
+                display: block;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+                letter-spacing: -1px
+            }
+
+            .subtitulo {
+                display: block; /* Asegura que baje */
+                font-size: 1.3rem;
+                color: #00ffcc;
+                margin-top: 5px;
+            }
+      
+            .subtitulo {
+                display: block; 
+                font-size: 1.1rem; /* Lo achicamos un poco para que se vea más delicado */
+                font-weight: 500; 
+                margin-top: 5px;
+                letter-spacing: 2px; /* En el celu, un poco más de aire queda muy pro */
+            }
+       
+            .contenedor-proyectos-branding {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .mosaico-grid {
+                grid-template-columns: repeat(2, 1fr); /* En celu simplificamos a 2 columnas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+       <h1>
+            <span class="inicial">V</span>alentino 
+            <span class="inicial">P</span>rez 
+            <span class="separador-pc"> | </span> 
+            <br class="salto-celu"> 
+            <span class="subtitulo">Mi Portfolio</span>
+        </h1>
+    </header>
+    
+<div class="intro-texto">
+    <p>Hola, soy Valen! Diseñador en Comunicación Visual freelance,
+        enfocado en crear experiencias visuales funcionales, originales
+        y con carácter, para llevarte a vos y a la identidad de tu marca al siguiente nivel en el mercado.</p>
+</div>
+
+    <div class="seccion-disciplinas">
+        <div class="tarjeta">
+            <h3>Logofolio</h3>
+            <div class="info-tarjeta">
+                <p>Desarrollo y diseño de signo marcario.</p>
+            </div>
+            <a href="#branding" class="boton">Ver Trabajos</a>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Identidad Visual</h3>
+            <div class="info-tarjeta">
+                <p>Diseño integral y conceptual de marca.</p>
+            </div>
+            <a href="#motion" class="boton">Ver Trabajos</a>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Editorial</h3>
+            <div class="info-tarjeta">
+                <p>Diagramación y arquitectura de la información.</p>
+            </div>
+            <a href="#editorial" class="boton">Ver Trabajos</a>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Motion Graphics</h3>
+            <div class="info-tarjeta">
+                <p>Animaciones y edición de video.</p>
+            </div>
+            <a href="#codigo" class="boton">Ver Trabajos</a>
+        </div>
+    </div>
+
+    <section id="branding">
+        <h2>Logos</h2>
+        
+        <div class="galeria-fotos">
+            <img src="img/EsperandoelNorte.png" onclick="abrirImagen(this)">
+            <img src="img/LTM.jpg" onclick="abrirImagen(this)">
+            <img src="img/LasTresMarias.jpg" onclick="abrirImagen(this)">
+            <img src="img/picto.png" onclick="abrirImagen(this)">
+            <img src="img/koala.png" onclick="abrirImagen(this)">
+            <img src="img/QUASAR.png" onclick="abrirImagen(this)">
+            <img src="img/gaviota.png" onclick="abrirImagen(this)">
+            <img src="img/misionT.png" onclick="abrirImagen(this)">
+        </div>
+    </div>
+    </section>
+
+    <section id="motion">
+        <h2>Branding</h2>
+    <div class="contenedor-proyectos-branding">
+
+    <div class="proyecto-mosaico">
+        <h3>Identidad Festival del Queso | Los Toldos</h3>
+        <h4>Proyecto universitario. Diseño de packaging, papelería, indumentaria y página web.</h4>
+        <p>El Festival del Queso se celebra cada año en la localidad de Los Toldos, BsAs.
+            Donde productores independientes y las grandes queserías locales ofrecen degustaciones,
+        junto a la gastronomía regional, música en vivo, y ferias del evento.</p>
+
+        <div class="mosaico-grid">
+            <img src="img/FestivalQueso_Libro3.png" class="foto-grande" onclick="abrirImagen(this)">
+            <img src="img/FestivalQueso_Doypack2.png" onclick="abrirImagen(this)">
+            <img src="img/Prez_Valentino_Mockup_bandana_FestivalQueso.png" onclick="abrirImagen(this)">
+            <img src="img/Prez_Valentino_Mockup2_Desktop.jpg" onclick="abrirImagen(this)">
+            <img src="img/Prez_Valentino_Mockup_Postal_FestivalQueso.jpg" class="foto-larga" onclick="abrirImagen(this)">
+            <img src="img/Prez_Valentino_Mockup_Flowpack_FestivalQueso.jpg" class="foto-larga" onclick="abrirImagen(this)">
+            <img src="img/FestivalQueso_Doypack1.png" onclick="abrirImagen(this)">
+        </div>
+    </div>
+
+    <div class="proyecto-mosaico">
+        <h3>Identidad Bulck | Le hace bien</h3>
+        <h4>Proyecto universitario. Diseño de logo, papelería institucional, indumentaria, stand y merchandising.</h4>
+        <p>Bulck es una empresa que produce alimento para mascotas 100% natural.
+            Buscan posicionarse en el mercado como una marca premium, natural y disruptiva,
+            apuntando a un público que le interese el bienestar de sus mascotas tanto como el suyo.</p>
+        <div class="mosaico-grid">
+            <img src="img/BULCKchomba.jpg" class="foto-larga" onclick="abrirImagen(this)">
+            <img src="img/BULCKtarjeta.jpg" onclick="abrirImagen(this)">
+            <img src="img/BULCKcalendario.jpg" onclick="abrirImagen(this)">
+            <img src="img/BULCKbolsa.jpg" class="foto-grande" onclick="abrirImagen(this)">
+            <img src="img/BULCKcarpeta.jpg" onclick="abrirImagen(this)">
+            <img src="img/BULCKhoja.jpg" class="foto-larga" onclick="abrirImagen(this)">
+            <img src="img/BULCKcredencial.jpg" onclick="abrirImagen(this)">
+        </div>
+    </div>
+    </section>
+
+    <section id="editorial">
+    <h2>Diseño Editorial</h2>
+
+    <div class="contenedor-proyectos-branding">
+
+    <div class="proyecto-mosaico">
+        <h3>Piezas independientes | Diagramación</h3>
+        <h4>Proyectos universitarios. Afiche de concientización, Infografía y Doble página.</h4>
+        <div class="mosaico-grid">
+            <img src="img/doblepagina2.png" class="foto-larga" onclick="abrirImagen(this)">
+            <img src="img/doblepagina1.jpg" onclick="abrirImagen(this)">
+            <img src="img/doblepagina3.jpg" onclick="abrirImagen(this)">
+            <div class="descripcion-mosaico foto-larga"> 
+                <h4>Somos Facultad de Artes</h4>
+                <p>Doble página con motivo del 60° aniversario de la Facultad de Artes
+                de la Universidad Nacional de La Plata.</p>
+            </div>
+        
+            <img src="img/afiche2.png" onclick="abrirImagen(this)">
+            <img src="img/afiche1.jpg" class="foto-larga" onclick="abrirImagen(this)">
+            <div class="descripcion-mosaico foto-larga"> 
+                <h4>Litio y soberanía energética</h4>
+                <p>Afiche informativo. Concientización sobre el uso nacional
+                    del litio en la electromovilidad.
+                </p>
+            </div>
+            <img src="img/afiche3.png" onclick="abrirImagen(this)">
+            
+            <img src="img/infografia.jpg" onclick="abrirImagen(this)">
+            <img src="img/infografia2.png" class="foto-larga" onclick="abrirImagen(this)">
+            <img src="img/infografia3.png" onclick="abrirImagen(this)">
+            <div class="descripcion-mosaico foto-larga">
+                <h4>Monarquía del néctar</h4>
+                <p>Infografía sobre la organización, estructura social, y jerarquía
+                    de las abejas dentro de la colmena.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="proyecto-mosaico">
+        <h3>CTRL Z | Diagramación de revista</h3>
+        <h4>Proyecto universitario. Diseño de tapa y apertura de nota, diagramación de sumario,
+            nota principal, nota secundaria y notas breves, para revista sobre diseño.</h4>
+        <p>"CTRL Z" es una revista temática orientada a los diseñadores.
+            Con un público objetivo desde estudiantes a profesionales, busca acompañar 
+            a los que recién se están introduciendo al mundo del diseño, y mantener actualizados 
+            a los que ya están establecidos desde hace años, mostrando tendencias, dando tips,
+            citando reconocidos profesionales y planteando las problemáticas que surjan en el ámbito del Diseño Gráfico.</p>
+
+        <div class="mosaico-grid">
+            <img src="img/CTRLZtapa.jpg" class="foto-grande" onclick="abrirImagen(this)">
+            <img src="img/CTRLZsumario.jpg" onclick="abrirImagen(this)">
+            <img src="img/CTRLZapertura.jpg" onclick="abrirImagen(this)">
+            <img src="img/CTRLZnota.jpg" onclick="abrirImagen(this)">
+            <img src="img/CTRLZtapa2.jpg" class="foto-grande" onclick="abrirImagen(this)">
+            <img src="img/CTRLZnota2.jpg" onclick="abrirImagen(this)">
+        </div>
+    </div>
+
+</div>
+</section>
+
+<section id="codigo">
+    <h2>Animaciones</h2>
+    <div class="mosaico-grid">
+        <img src="img/portfolioani.gif" onclick="abrirImagen(this)"> 
+        <h4> Continuará ...</h4>
+    </div>
+</section>
+
+<a href="#" class="boton-subir" id="btnSubir">
+    ↑
+</a>
+
+<footer>
+    <div class="footer-content">
+        <p>¿Tenés un proyecto en mente?</p>
+        <h4>Contactame y trabajemos juntos:</h4>
+        <div class="links-contacto">
+            <a href="https://wa.me/5492215055930" target="_blank">WhatsApp</a>
+            <a href="mailto:valentino.prez04@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/valentino-prez-b53804325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+            <a href="https://www.behance.net/valentinoprez1" target="_blank">Behance</a>
+        </div>
+        <p class="copyright">&copy; 2026 Valen Prez - Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<div id="modalImagen" class="modal">
+    <span class="cerrar" onclick="cerrarImagen()">&times;</span>
+    
+    <span class="flecha anterior" onclick="cambiarImagen(-1)">&#10094;</span>
+    <img class="modal-contenido" id="imgGrande">
+    <span class="flecha siguiente" onclick="cambiarImagen(1)">&#10095;</span>
+    
+    <div id="caption"></div>
+</div>
+
+</body>
+
+<script>
+    const btn = document.getElementById("btnSubir");
+
+    window.onscroll = function() {
+        // Si bajaste más de 300px, mostramos el botón. Si no, lo ocultamos.
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+
+    let imagenesProyecto = [];
+    let indiceActual = 0;
+    const modal = document.getElementById("modalImagen");
+    const imgGrande = document.getElementById("imgGrande");
+
+    function abrirImagen(elemento) {
+        const contenedor = elemento.closest('.mosaico-grid') || elemento.closest('.galeria-fotos');
+        imagenesProyecto = Array.from(contenedor.querySelectorAll('img'));
+        indiceActual = imagenesProyecto.indexOf(elemento);
+        
+        modal.style.display = "flex";
+        actualizarModal();
+    }
+
+    function actualizarModal() {
+        const captionText = document.getElementById("caption");
+        imgGrande.src = imagenesProyecto[indiceActual].src;
+        imgGrande.classList.remove('img-zoom'); // Reset zoom al cambiar de foto
+        captionText.innerHTML = imagenesProyecto[indiceActual].alt || "";
+    }
+
+    function cambiarImagen(direccion) {
+        indiceActual += direccion;
+        if (indiceActual >= imagenesProyecto.length) indiceActual = 0;
+        if (indiceActual < 0) indiceActual = imagenesProyecto.length - 1;
+        actualizarModal();
+    }
+
+    function cerrarImagen() {
+        modal.style.display = "none";
+        imgGrande.classList.remove('img-zoom');
+    }
+
+    // NUEVO: Cerrar al tocar fuera de la imagen
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            cerrarImagen();
+        }
+    });
+
+    // NUEVO: Zoom con click y prevenir cierre
+    imgGrande.addEventListener('click', function(e) {
+        e.stopPropagation(); // Evita que el click llegue al modal y lo cierre
+        this.classList.toggle('img-zoom');
+    });
+
+    // Navegación por teclado
+    document.addEventListener('keydown', function(e) {
+        if (modal.style.display === "flex") {
+            if (e.key === "ArrowLeft") cambiarImagen(-1);
+            if (e.key === "ArrowRight") cambiarImagen(1);
+            if (e.key === "Escape") cerrarImagen();
+        }
+    });
+
+    // Botón subir (lo mantenemos igual)
+    window.onscroll = function() {
+        const btn = document.getElementById("btnSubir");
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+</script>
+
+</html>
